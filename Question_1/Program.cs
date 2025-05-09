@@ -14,7 +14,7 @@
             CPMS[] People = new CPMS[size];
 
             bool isRunning = true;
-
+            int counter = 0;
             //Run application
             while (isRunning)
             {
@@ -51,25 +51,32 @@
                     //Increase readability
                     Console.WriteLine();
                 }
+                
                 //If a valid choice is entered, the user can continue
                 if (isValidChoice )
                 {
+                    
                     switch (choice)
                     {
                         case 1:
-                            Console.WriteLine("Sigma");
+                            AddPatient(People);
+                            counter++;
                             Console.WriteLine();
                             break;
                         case 2:
-                            Console.WriteLine();
+                            RemovePatient(People, counter);
+                            counter--;
                             break;
                         case 3:
                             Console.WriteLine();
                             break;
                         case 4:
-                            Console.WriteLine();
+                            DisplayAll(People);
+                            //Console.WriteLine();
                             break;
                         case 5:
+                            Console.WriteLine("Have a good day!");
+                            Environment.Exit(0);
                             Console.WriteLine();
                             break;
                     }   
@@ -90,6 +97,54 @@
             }
             //Increase readability
             Console.WriteLine();
+        }
+
+        static void AddPatient(CPMS[] People)
+        {
+            // Get user info
+            Console.Write("Enter the patient's name: ");
+            string name = Console.ReadLine();
+            Console.Write("Enter the patient's age: ");
+            int age = int.Parse(Console.ReadLine());
+            Console.Write("Enter the patient's medical condition: ");
+            string medicalCondition = Console.ReadLine();
+
+
+            CPMS addNew = new CPMS(name, age, medicalCondition);
+            for (int i = 0; i < People.Length; i++)
+            {
+                if (People[i] == null)
+                {
+                    People[i] = addNew;
+                    break;
+                }
+
+
+            }
+        }
+        static void RemovePatient(CPMS[] People, int counter)
+        {
+            Console.Write("Enter patient name that you want to remove: ");
+            string name = Console.ReadLine();
+            for (int i = 0; i < counter; i++)
+            {
+                if (People[i].Name == name)
+                {
+                    People[i] = null;
+                }
+            }
+        }
+
+        static void DisplayAll(CPMS[] People)
+        {
+            foreach (var person in People)
+            {
+                if (person != null)
+                {
+                    Console.WriteLine(person.Name);
+                    Console.WriteLine();
+                }
+            }
         }
     }
 

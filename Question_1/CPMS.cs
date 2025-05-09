@@ -13,6 +13,8 @@ namespace Question_1
         public int Age { get; set; }
         public string MedicalCondition { get; set; }
 
+        
+
         public CPMS(string name, int age, string medicalCondition)
         {
             Name = name;
@@ -20,7 +22,7 @@ namespace Question_1
             MedicalCondition = medicalCondition;
         }
 
-        //Fields
+        
           
     }
 }
